@@ -18,7 +18,6 @@ func Gorm() *gorm.DB {
 	dataBase := gormConfig.DataBase
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", userName, passWord, url, port, dataBase)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
 	if err != nil {
 		log.Fatalf("Open DabaBase Error: %v", err)
 	} else {
