@@ -11,10 +11,10 @@ import (
 func LoginByPassWord(context *gin.Context) {
 	//获取登录参数
 	userLoginRequest := requst.UserLoginRequest{}
+	fullPath := context.FullPath()
 
 	if error := context.ShouldBind(&userLoginRequest); error != nil {
-		fullPath := context.FullPath()
-		error := &exception.ServiceException{
+		error := &exception.ServiceError{
 			Message: "表单参数错误", Code: 500, Request: fullPath,
 		}
 		context.Error(error)
@@ -23,8 +23,11 @@ func LoginByPassWord(context *gin.Context) {
 
 	//调用service
 	loginService := service.LoginService{}
-	//登录
-	loginService.LoginByPassword(userLoginRequest)
+	//捕获异常
+	if error := loginService.LoginByPassword(userLoginRequest); error != nil {
+		context.Error(error)
+		return
+	}
 
 	//返回结果
 	common.Success(context)

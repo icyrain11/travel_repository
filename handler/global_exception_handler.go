@@ -14,9 +14,9 @@ func GlobalExceptionHandler() gin.HandlerFunc {
 		//处理异常
 		if error := context.Errors.Last(); error != nil {
 			switch error.Err.(type) {
-			case *exception.ServiceException:
+			case *exception.ServiceError:
 				{
-					error := error.Err.(*exception.ServiceException)
+					error := error.Err.(*exception.ServiceError)
 					handlerServiceException(context, error)
 					break
 				}
@@ -28,9 +28,9 @@ func GlobalExceptionHandler() gin.HandlerFunc {
 	}
 }
 
-func handlerServiceException(context *gin.Context, serviceException *exception.ServiceException) {
-	code := serviceException.Code
-	message := serviceException.Message
+func handlerServiceException(context *gin.Context, serviceError *exception.ServiceError) {
+	code := serviceError.Code
+	message := serviceError.Message
 	switch code {
 	case constant.Fail:
 		{
