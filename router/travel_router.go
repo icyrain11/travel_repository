@@ -8,7 +8,7 @@ import (
 func TravelRouter(Router *gin.Engine) {
 	TravelRouter := Router.Group("travel")
 	{
-		TravelRouter.POST("/", api.Add)
+		TravelRouter.POST("/", api.AddTravel)
 
 		TravelRouter.GET("/", func(context *gin.Context) {
 			context.JSON(200, gin.H{
