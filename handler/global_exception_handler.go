@@ -1,14 +1,46 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"gin_tarvel_repository/constant"
+	"gin_tarvel_repository/exception"
+	"gin_tarvel_repository/model/common"
+	"github.com/gin-gonic/gin"
+)
 
-// TODO GlobalExceptionHandler 全局异常处理
-func GlobalExceptionHandler(c *gin.Context) {
-	defer func() {
-		if err := recover(); err != nil {
-			//c.JSON()
+// GlobalExceptionHandler 全局异常处理中间件
+func GlobalExceptionHandler() gin.HandlerFunc {
+	return func(context *gin.Context) {
+		context.Next()
+		//处理异常
+		if error := context.Errors.Last(); error != nil {
+			switch error.Err.(type) {
+			case *exception.ServiceException:
+				{
+					error := error.Err.(*exception.ServiceException)
+					handlerServiceException(context, error)
+					break
+				}
+
+			}
 		}
-	}()
+		// 防止错误继续传递给下一个中间件或处理函数
+		context.Abort()
+	}
+}
 
-	c.Next()
+func handlerServiceException(context *gin.Context, serviceException *exception.ServiceException) {
+	code := serviceException.Code
+	message := serviceException.Message
+	switch code {
+	case constant.Fail:
+		{
+			common.FailWithMessage(message, context)
+			break
+		}
+	case constant.UnAuthorized:
+		{
+			common.FailWithDetail(constant.UnAuthorized, message, map[string]interface{}{}, context)
+			break
+		}
+	}
 }

@@ -1,6 +1,6 @@
 package exception
 
 // 异常接口
-type error interface {
-	Error() string
-}
+//type Exception interface {
+//	Error(c *gin.Context) string
+//}

@@ -1,14 +1,14 @@
 package router
 
 import (
-	"gin_tarvel_repository/api"
+	"gin_tarvel_repository/service"
 	"github.com/gin-gonic/gin"
 )
 
 func TravelRouter(Router *gin.Engine) {
 	TravelRouter := Router.Group("travel")
 	{
-		TravelRouter.POST("/", api.AddTravel)
+		TravelRouter.POST("/", service.AddTravel)
 
 		TravelRouter.GET("/", func(context *gin.Context) {
 			context.JSON(200, gin.H{

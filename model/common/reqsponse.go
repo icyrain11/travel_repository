@@ -41,3 +41,7 @@ func FailWithMessage(message string, c *gin.Context) {
 func FailWithMessageAndData(message string, data interface{}, c *gin.Context) {
 	Result(constant.Fail, data, message, c)
 }
+
+func FailWithDetail(code int, message string, data interface{}, c *gin.Context) {
+	Result(code, data, message, c)
+}

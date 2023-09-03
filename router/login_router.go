@@ -1,15 +1,15 @@
 package router
 
 import (
-	"gin_tarvel_repository/api"
+	"gin_tarvel_repository/controller"
 	"github.com/gin-gonic/gin"
 )
 
 func LoginRouter(Router *gin.Engine) {
-	TravelRouter := Router.Group("login")
+	LoginRouter := Router.Group("login")
 	{
-		TravelRouter.POST("/", api.LoginByPassword)
+		LoginRouter.POST("/", controller.LoginByPassWord)
 
-		TravelRouter.POST("/logout", api.Logout)
+		LoginRouter.POST("/logout", controller.Logout)
 	}
 }

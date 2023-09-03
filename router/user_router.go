@@ -1,7 +1,7 @@
 package router
 
 import (
-	"gin_tarvel_repository/api"
+	"gin_tarvel_repository/controller"
 	"github.com/gin-gonic/gin"
 )
 
@@ -9,9 +9,9 @@ func UserRouter(Router *gin.Engine) {
 	UserRouter := Router.Group("user")
 	{
 
-		UserRouter.POST("/", api.AddUser)
+		UserRouter.POST("/", controller.AddUser)
 
-		UserRouter.GET("/:id", api.GetUserById)
+		UserRouter.GET("/:id", controller.GetUserById)
 
 	}
 }

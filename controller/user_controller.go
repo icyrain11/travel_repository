@@ -1,9 +1,8 @@
-package api
+package controller
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "github.com/gin-gonic/gin"
 
+// AddUser 接口
 func AddUser(c *gin.Context) {
 
 }
