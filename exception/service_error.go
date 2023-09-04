@@ -18,6 +18,5 @@ func (serviceError *ServiceError) Error() string {
 	logMessage := fmt.Sprintf("Service服务异常错误代码: %d , 错误消息: %s , 调用服务名称: %s",
 		serviceError.Code, serviceError.Message, serviceError.Request)
 	log.Println(logMessage)
-
 	return logMessage
 }

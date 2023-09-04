@@ -5,6 +5,7 @@ import (
 	"gin_tarvel_repository/model/common"
 	"gin_tarvel_repository/requst"
 	"gin_tarvel_repository/service"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,8 +24,8 @@ func LoginByPassWord(context *gin.Context) {
 
 	//调用service
 	loginService := service.LoginService{}
-	//捕获异常
-	if error := loginService.LoginByPassword(userLoginRequest); error != nil {
+	session := sessions.Default(context)
+	if error := loginService.LoginByPassword(userLoginRequest, session); error != nil {
 		context.Error(error)
 		return
 	}

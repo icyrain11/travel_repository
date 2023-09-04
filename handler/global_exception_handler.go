@@ -20,7 +20,6 @@ func GlobalExceptionHandler() gin.HandlerFunc {
 					handlerServiceException(context, error)
 					break
 				}
-
 			}
 		}
 		// 防止错误继续传递给下一个中间件或处理函数

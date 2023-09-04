@@ -1,10 +1,10 @@
 package api
 
-import "github.com/gin-gonic/gin"
+import "gin_tarvel_repository/requst"
 
 // UserApi 用户api接口
 type UserApi interface {
-	AddUser(c *gin.Context)
+	AddUser(userAddRequest requst.UserAddRequest)
 
-	GetUserById(c *gin.Context)
+	GetUserById(int int)
 }

@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
@@ -22,7 +21,8 @@ func InitGormConfig() Mysql {
 		log.Fatalf("Failed to read YAML file: %v", err)
 	}
 
-	fmt.Println("yaml open content: \n", string(file))
+	//输出配置文件
+	log.Println("yaml open content: \n", string(file))
 
 	//初始化文件
 	config := Config{}

@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func Gorm() *gorm.DB {
+func Gorm() (*gorm.DB, error) {
 
 	gormConfig := config.InitGormConfig()
 	url := gormConfig.Url
@@ -17,12 +17,11 @@ func Gorm() *gorm.DB {
 	userName := gormConfig.UserName
 	dataBase := gormConfig.DataBase
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", userName, passWord, url, port, dataBase)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("Open DabaBase Error: %v", err)
+	db, error := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if error != nil {
+		log.Fatalf("Open DabaBase Error: %v", error)
 	} else {
 		log.Println("init db success")
 	}
-
-	return db
+	return db, error
 }
