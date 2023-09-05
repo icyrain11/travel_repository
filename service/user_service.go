@@ -9,7 +9,7 @@ type UserService struct {
 }
 
 func (userService UserService) AddUser(userAddRequest requst.UserAddRequest) {
-
+	//email := userAddRequest.Email
 }
 
 func (userService UserService) GetUserById(id int) {

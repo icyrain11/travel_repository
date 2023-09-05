@@ -2,8 +2,9 @@ package common
 
 import (
 	"gin_tarvel_repository/constant"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
@@ -12,36 +13,36 @@ type Response struct {
 	Message string      `json:message`
 }
 
-func Result(code int, data interface{}, message string, c *gin.Context) {
-	c.JSON(http.StatusOK, Response{
+func Result(code int, data interface{}, message string, context *gin.Context) {
+	context.JSON(http.StatusOK, Response{
 		code, data, message,
 	})
 }
 
-func Success(c *gin.Context) {
-	Result(constant.Success, map[string]interface{}{}, "操作成功", c)
+func Success(context *gin.Context) {
+	Result(constant.Success, map[string]interface{}{}, "操作成功", context)
 }
 
-func SuccessWithMessage(message string, c *gin.Context) {
-	Result(constant.Success, map[string]interface{}{}, message, c)
+func SuccessWithMessage(message string, context *gin.Context) {
+	Result(constant.Success, map[string]interface{}{}, message, context)
 }
 
-func SuccessWithMessageAndData(message string, data interface{}, c *gin.Context) {
-	Result(constant.Success, data, message, c)
+func SuccessWithMessageAndData(message string, data interface{}, context *gin.Context) {
+	Result(constant.Success, data, message, context)
 }
 
-func Fail(c *gin.Context) {
-	Result(constant.Fail, map[string]interface{}{}, "操作失败", c)
+func Fail(context *gin.Context) {
+	Result(constant.Fail, map[string]interface{}{}, "操作失败", context)
 }
 
-func FailWithMessage(message string, c *gin.Context) {
-	Result(constant.Fail, map[string]interface{}{}, message, c)
+func FailWithMessage(message string, context *gin.Context) {
+	Result(constant.Fail, map[string]interface{}{}, message, context)
 }
 
-func FailWithMessageAndData(message string, data interface{}, c *gin.Context) {
-	Result(constant.Fail, data, message, c)
+func FailWithMessageAndData(message string, data interface{}, context *gin.Context) {
+	Result(constant.Fail, data, message, context)
 }
 
-func FailWithDetail(code int, message string, data interface{}, c *gin.Context) {
-	Result(code, data, message, c)
+func FailWithDetail(code int, message string, data interface{}, context *gin.Context) {
+	Result(code, data, message, context)
 }

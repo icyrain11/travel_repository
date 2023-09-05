@@ -4,11 +4,12 @@ import (
 	"gin_tarvel_repository/constant"
 	"gin_tarvel_repository/exception"
 	"gin_tarvel_repository/model/common"
+
 	"github.com/gin-gonic/gin"
 )
 
-// GlobalExceptionHandler 全局异常处理中间件
-func GlobalExceptionHandler() gin.HandlerFunc {
+// GlobalErrorHandler  全局异常处理中间件
+func GlobalErrorHandler() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		context.Next()
 		//处理异常
@@ -17,7 +18,7 @@ func GlobalExceptionHandler() gin.HandlerFunc {
 			case *exception.ServiceError:
 				{
 					error := error.Err.(*exception.ServiceError)
-					handlerServiceException(context, error)
+					handlerServiceError(context, error)
 					break
 				}
 			}
@@ -27,7 +28,7 @@ func GlobalExceptionHandler() gin.HandlerFunc {
 	}
 }
 
-func handlerServiceException(context *gin.Context, serviceError *exception.ServiceError) {
+func handlerServiceError(context *gin.Context, serviceError *exception.ServiceError) {
 	code := serviceError.Code
 	message := serviceError.Message
 	switch code {
@@ -41,5 +42,11 @@ func handlerServiceException(context *gin.Context, serviceError *exception.Servi
 			common.FailWithDetail(constant.UnAuthorized, message, map[string]interface{}{}, context)
 			break
 		}
+	default:
+		{
+			common.FailWithMessage(message, context)
+			break
+		}
 	}
+
 }

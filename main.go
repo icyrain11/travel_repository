@@ -3,13 +3,14 @@ package main
 import (
 	"gin_tarvel_repository/initialize"
 	router2 "gin_tarvel_repository/router"
-	"github.com/gin-gonic/gin"
-	"golang.org/x/net/context"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"golang.org/x/net/context"
 )
 
 func main() {
@@ -19,6 +20,9 @@ func main() {
 		time.Sleep(5 * time.Second)
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
+
+	//控制台颜色化
+	gin.ForceConsoleColor()
 
 	//初始化路由组
 	router2.InitRouterGroup(router)
