@@ -42,11 +42,20 @@ func handlerServiceError(context *gin.Context, serviceError *exception.ServiceEr
 			common.FailWithDetail(constant.UnAuthorized, message, map[string]interface{}{}, context)
 			break
 		}
+	case constant.Forbidden:
+		{
+			common.FailWithDetail(constant.Forbidden, message, map[string]interface{}{}, context)
+			break
+		}
 	default:
 		{
 			common.FailWithMessage(message, context)
 			break
 		}
 	}
+}
+
+// TODO
+func handlerValidError() {
 
 }
