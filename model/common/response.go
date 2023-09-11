@@ -8,9 +8,9 @@ import (
 )
 
 type Response struct {
-	Code    int         `json:code`
-	Data    interface{} `json:data`
-	Message string      `json:message`
+	Code    int         `json:"code"`
+	Data    interface{} `json:"data"`
+	Message string      `json:"message"`
 }
 
 func Result(code int, data interface{}, message string, context *gin.Context) {

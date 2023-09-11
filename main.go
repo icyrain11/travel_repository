@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gin_tarvel_repository/initialize"
+	"gin_tarvel_repository/init"
 	router2 "gin_tarvel_repository/router"
 	"log"
 	"net/http"
@@ -16,6 +16,8 @@ import (
 func main() {
 
 	router := gin.Default()
+
+	//swagger init
 	router.GET("/", func(c *gin.Context) {
 		time.Sleep(5 * time.Second)
 		c.String(http.StatusOK, "Welcome Gin Server")
@@ -26,8 +28,9 @@ func main() {
 
 	//初始化路由组
 	router2.InitRouterGroup(router)
+
 	//初始化配置文件
-	initialize.Initialize()
+	init.InitializeGlobalVaribale()
 
 	srv := &http.Server{
 		Addr:    ":8080",

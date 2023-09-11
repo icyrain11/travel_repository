@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// CopyProperties vo -> po
+// CopyProperties dto -> po
 func CopyProperties[T any](source any) (target any) {
 	if error := copier.Copy(&target, source); error != nil {
 		//触发错误

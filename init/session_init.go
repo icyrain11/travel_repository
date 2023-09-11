@@ -1,4 +1,4 @@
-package initialize
+package init
 
 // Session 初始化session
 func Session() {
