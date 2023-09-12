@@ -1,23 +1,38 @@
 package main
 
 import (
-	"gin_tarvel_repository/init"
+	"gin_tarvel_repository/initialize"
 	router2 "gin_tarvel_repository/router"
+	"github.com/gin-gonic/gin"
+	"golang.org/x/net/context"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
-
-	"github.com/gin-gonic/gin"
-	"golang.org/x/net/context"
 )
 
+// 添加注释以描述 server 信息
+// @title           Swagger Example API
+// @version         1.0
+// @description     This is a sample server celler server.
+// @termsOfService  http://swagger.io/terms/
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+// @host      localhost:8080
+// @BasePath  /
+// @securityDefinitions.basic  BasicAuth
+
+// @externalDocs.description  OpenAPI
+// @externalDocs.url          https://swagger.io/resources/open-api/
 func main() {
 
 	router := gin.Default()
 
-	//swagger init
+	//swagger initialize
 	router.GET("/", func(c *gin.Context) {
 		time.Sleep(5 * time.Second)
 		c.String(http.StatusOK, "Welcome Gin Server")
@@ -30,7 +45,7 @@ func main() {
 	router2.InitRouterGroup(router)
 
 	//初始化配置文件
-	init.InitializeGlobalVaribale()
+	initialize.InitializeGlobalVaribale()
 
 	srv := &http.Server{
 		Addr:    ":8080",

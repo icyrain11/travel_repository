@@ -3,7 +3,7 @@ package service
 import (
 	"gin_tarvel_repository/constant"
 	"gin_tarvel_repository/exception"
-	"gin_tarvel_repository/requst"
+	"gin_tarvel_repository/request"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +11,7 @@ import (
 type LoginService struct {
 }
 
-func (loginService LoginService) LoginByPassword(userLoginRequest requst.UserLoginRequest,
+func (loginService LoginService) LoginByPassword(userLoginRequest request.UserLoginRequest,
 	session sessions.Session) error {
 
 	//返回错误

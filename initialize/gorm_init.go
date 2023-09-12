@@ -1,4 +1,4 @@
-package init
+package initialize
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func Gorm() (*gorm.DB, error) {
 	if error != nil {
 		log.Fatalf("Open DabaBase Error: %v", error)
 	} else {
-		log.Println("init db success")
+		log.Println("initialize db success")
 	}
 	return db, error
 }

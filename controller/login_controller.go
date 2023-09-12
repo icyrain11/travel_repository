@@ -3,20 +3,28 @@ package controller
 import (
 	"gin_tarvel_repository/exception"
 	"gin_tarvel_repository/model/common"
-	"gin_tarvel_repository/requst"
+	"gin_tarvel_repository/request"
 	"gin_tarvel_repository/service"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
+// LoginByPassWord godoc
+// @Summary      Login by pass word
+// @Description  login
+// @Tags         login
+// @Accept       json
+// @Produce      json
+// @Param		 userLoginRequest
+// @Router       /login/ [post]
 func LoginByPassWord(context *gin.Context) {
 	//获取登录参数
-	userLoginRequest := requst.UserLoginRequest{}
-	fullPath := context.FullPath()
+	userLoginRequest := request.UserLoginRequest{}
 
 	if error := context.ShouldBind(&userLoginRequest); error != nil {
+		//构造异常
 		error := &exception.ServiceError{
-			Message: "表单参数错误", Code: 500, Request: fullPath,
+			Message: "表单参数错误", Code: 500, Request: "/login/",
 		}
 		context.Error(error)
 		return
@@ -34,6 +42,6 @@ func LoginByPassWord(context *gin.Context) {
 	common.Success(context)
 }
 
-func Logout(c *gin.Context) {
+func Logout(context *gin.Context) {
 
 }

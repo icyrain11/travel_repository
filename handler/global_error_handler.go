@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"gin_tarvel_repository/constant"
 	"gin_tarvel_repository/exception"
 	"gin_tarvel_repository/model/common"
@@ -31,6 +32,7 @@ func GlobalErrorHandler() gin.HandlerFunc {
 func handlerServiceError(context *gin.Context, serviceError *exception.ServiceError) {
 	code := serviceError.Code
 	message := serviceError.Message
+	fmt.Println(code)
 	switch code {
 	case constant.Fail:
 		{
@@ -47,6 +49,12 @@ func handlerServiceError(context *gin.Context, serviceError *exception.ServiceEr
 			common.FailWithDetail(constant.Forbidden, message, map[string]interface{}{}, context)
 			break
 		}
+	case constant.NotFound:
+		{
+			common.FailWithDetail(constant.NotFound, message, map[string]interface{}{}, context)
+			break
+		}
+
 	default:
 		{
 			common.FailWithMessage(message, context)

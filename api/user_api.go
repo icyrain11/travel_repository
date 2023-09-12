@@ -1,10 +1,10 @@
 package api
 
-import "gin_tarvel_repository/requst"
+import "gin_tarvel_repository/request"
 
 // UserApi 用户api接口
 type UserApi interface {
-	AddUser(userAddRequest requst.UserAddRequest)
+	AddUser(userAddRequest request.UserAddRequest)
 
 	GetUserById(int int)
 }

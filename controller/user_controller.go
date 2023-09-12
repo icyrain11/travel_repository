@@ -2,14 +2,14 @@ package controller
 
 import (
 	"gin_tarvel_repository/exception"
-	"gin_tarvel_repository/requst"
+	"gin_tarvel_repository/request"
 	"gin_tarvel_repository/service"
 	"github.com/gin-gonic/gin"
 )
 
 // AddUser 接口
 func AddUser(context *gin.Context) {
-	userAddRequest := requst.UserAddRequest{}
+	userAddRequest := request.UserAddRequest{}
 	fullPath := context.FullPath()
 	if error := context.ShouldBind(&userAddRequest); error != nil {
 		error := &exception.ServiceError{

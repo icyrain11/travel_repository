@@ -1,4 +1,4 @@
-package init
+package initialize
 
 // InitializeGlobalVaribale 全局配置初始化化
 func InitializeGlobalVaribale() {

@@ -8,12 +8,23 @@ import (
 )
 
 func InitRouterGroup(Router *gin.Engine) {
-	initHandler(Router)
-	initSession(Router)
 
-	UserRouter(Router)
-	LoginRouter(Router)
-	TravelRouter(Router)
+	{
+		initHandler(Router)
+		initSession(Router)
+	}
+
+	{
+		UserRouter(Router)
+		LoginRouter(Router)
+		TravelRouter(Router)
+	}
+
+	{
+		NotFoundRouter(Router)
+		MethodNotAllowedRouter(Router)
+	}
+
 	SwaggerRouter(Router)
 }
 
