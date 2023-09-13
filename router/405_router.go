@@ -8,11 +8,10 @@ import (
 
 func MethodNotAllowedRouter(Router *gin.Engine) {
 	//405
-	Router.NoRoute(
+	Router.NoMethod(
 		func(context *gin.Context) {
-			// 这里只是演示，不要在生产环境中直接返回HTML代码
 			error := &exception.ServiceError{
-				Message: "Router Not Found", Code: constant.MethodNotAllowed,
+				Message: "Method Not Allow", Code: constant.MethodNotAllowed,
 			}
 			//错误处理
 			context.Error(error)

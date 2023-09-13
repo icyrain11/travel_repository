@@ -41,20 +41,24 @@ func handlerServiceError(context *gin.Context, serviceError *exception.ServiceEr
 		}
 	case constant.UnAuthorized:
 		{
-			common.FailWithDetail(constant.UnAuthorized, message, map[string]interface{}{}, context)
+			common.FailWithDetail(code, message, map[string]interface{}{}, context)
 			break
 		}
 	case constant.Forbidden:
 		{
-			common.FailWithDetail(constant.Forbidden, message, map[string]interface{}{}, context)
+			common.FailWithDetail(code, message, map[string]interface{}{}, context)
 			break
 		}
 	case constant.NotFound:
 		{
-			common.FailWithDetail(constant.NotFound, message, map[string]interface{}{}, context)
+			common.FailWithDetail(code, message, map[string]interface{}{}, context)
 			break
 		}
-
+	case constant.MethodNotAllowed:
+		{
+			common.FailWithDetail(code, message, map[string]interface{}{}, context)
+			break
+		}
 	default:
 		{
 			common.FailWithMessage(message, context)
@@ -64,6 +68,6 @@ func handlerServiceError(context *gin.Context, serviceError *exception.ServiceEr
 }
 
 // TODO
-func handlerValidError() {
+func handlerValidError(context *gin.Context) {
 
 }
